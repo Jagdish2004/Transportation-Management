@@ -1,0 +1,9 @@
+/* src/components/Map/Map.css */
+.map {
+    height: 400px; /* Adjust height as needed */
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
