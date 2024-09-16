@@ -1,7 +1,6 @@
-// src/components/Auth/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Optional: create this CSS file for styling
+import './Login.css'; // Assuming your CSS file is already created and styled as discussed earlier
 
 const Login = () => {
   const [user, setUser] = useState({ username: '', password: '', role: '' });
@@ -37,30 +36,32 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <input
-        type="text"
-        name="username"
-        value={user.username}
-        onChange={handleChange}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        name="password"
-        value={user.password}
-        onChange={handleChange}
-        placeholder="Password"
-      />
-      <select name="role" value={user.role} onChange={handleChange}>
-        <option value="">Select Role</option>
-        <option value="manager">Manager</option>
-        <option value="planner">Planner</option>
-        <option value="scheduler">Scheduler</option>
-        <option value="crew">Crew Member</option>
-      </select>
-      <button onClick={handleLogin}>Login</button>
+    <div className="container"> {/* Flexbox container for centering */}
+      <div className="login-container">
+        <h2>Login</h2>
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
+          placeholder="Username"
+        />
+        <input
+          type="password"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
+          placeholder="Password"
+        />
+        <select name="role" value={user.role} onChange={handleChange}>
+          <option value="">Select Role</option>
+          <option value="manager">Manager</option>
+          <option value="planner">Planner</option>
+          <option value="scheduler">Scheduler</option>
+          <option value="crew">Crew Member</option>
+        </select>
+        <button onClick={handleLogin}>Login</button>
+      </div>
     </div>
   );
 };

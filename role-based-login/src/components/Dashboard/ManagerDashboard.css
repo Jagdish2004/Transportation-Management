@@ -1,0 +1,92 @@
+/* src/components/ManagerDashboard/ManagerDashboard.css */
+.dashboard-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0 10px;
+    color: white;
+    font-size: 1.2em;
+}
+
+.stat-item.profit {
+    background-color: #28a745; /* Green */
+}
+
+.stat-item.sales {
+    background-color: #007bff; /* Blue */
+}
+
+.stat-item.revenue {
+    background-color: #ffc107; /* Yellow */
+}
+
+.stat-item.expenses {
+    background-color: #dc3545; /* Red */
+}
+
+.add-route,
+.view-reports {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 22px);
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.routes-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.routes-list li,
+.dummy-routes li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.dummy-routes {
+    margin-top: 20px;
+}
+
+.report-data {
+    margin-top: 10px;
+}
