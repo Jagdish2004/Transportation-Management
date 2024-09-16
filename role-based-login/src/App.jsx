@@ -1,4 +1,8 @@
 // src/App.jsx
+//leaflet for manager
+// src/index.js
+import 'leaflet/dist/leaflet.css';
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Auth/Login';
