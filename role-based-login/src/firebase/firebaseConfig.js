@@ -1,6 +1,5 @@
-// /src/firebase/firebaseConfig.js
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+const { initializeApp } = require('firebase/app');
+const { getDatabase, ref, set } = require('firebase/database');
 
 const firebaseConfig = {
   apiKey: "AIzaSyC0d-X2xUu1tLHDQBaZViNlisYH2rqa2Zk",
@@ -12,5 +11,17 @@ const firebaseConfig = {
   measurementId: "G-01BD1ZP6F4"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Get a reference to the database
+const database = getDatabase(app);
+
+// Function to add route
+const addRoute = (routeId, coordinates) => {
+  set(ref(database, 'routes/' + routeId), {
+    coordinates
+  });
+};
+
+module.exports = { addRoute };
