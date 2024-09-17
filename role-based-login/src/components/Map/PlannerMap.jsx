@@ -15,7 +15,7 @@ const Map = ({ routes }) => {
     iconSize: [10, 15],
     iconAnchor: [5, 15],
     popupAnchor: [1, -34],
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    //shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
    
   });
 
