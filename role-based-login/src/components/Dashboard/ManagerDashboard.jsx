@@ -1,40 +1,44 @@
+
+// src/components/ManagerDashboard/ManagerDashboard.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 import './ManagerDashboard.css';
-import Map from '../Map/Map'; // Import the Map component
-import RouteCreationRequest from '../RouteCreationRequest/RouteCreationRequest'; // Import the RouteCreationRequest component
+import Map from '../Map/PlannerMap'; // Import the PlannerMap component for visualization
+import RouteCreationRequest from '../RouteCreationRequest/RouteCreationRequest';
+//import Navbar from '../../Navbar/Navbar'; // Import Navbar for consistent layout
 
 const ManagerDashboard = () => {
-  const navigate = useNavigate(); // Initialize the navigate function for routing
+  const navigate = useNavigate();
 
   const [routes, setRoutes] = useState([
     {
-      name: 'Route 1: City Center to Airport',
-      path: [
-        [28.6129, 77.2295],
-        [28.6145, 77.2152],
-        [28.6167, 77.2101],
-        [28.6190, 77.2000],
-      ],
+      id: 'route1',
+      coordinates: [
+        { destination: 'Govind Puri Metro Station', lat: 28.5355, lng: 77.2698 },
+        { destination: 'AIIMS', lat: 28.5665, lng: 77.2100 },
+        { destination: 'Karol Bagh', lat: 28.6538, lng: 77.1913 },
+        { destination: 'Shahbad Dairy', lat: 28.7301, lng: 77.1121 }
+      ]
     },
     {
-      name: 'Route 2: Downtown to Suburbs',
-      path: [
-        [28.6150, 77.2075],
-        [28.6200, 77.2200],
-        [28.6250, 77.2300],
-        [28.6300, 77.2400],
-      ],
+      id: 'route2',
+      coordinates: [
+        { destination: 'Anand Vihar ISBT', lat: 28.6457, lng: 77.3152 },
+        { destination: 'Karkardooma Court', lat: 28.6467, lng: 77.2931 },
+        { destination: 'Indraprastha Metro Station', lat: 28.6285, lng: 77.2459 },
+        { destination: 'Red Fort', lat: 28.6562, lng: 77.2410 },
+        { destination: 'Mori Gate Terminal', lat: 28.6685, lng: 77.2234 }
+      ]
     },
     {
-      name: 'Route 3: Metro Station to City Park',
-      path: [
-        [28.6450, 77.1900],
-        [28.6500, 77.2000],
-        [28.6550, 77.2100],
-        [28.6600, 77.2200],
-      ],
-    },
+      id: 'route3',
+      coordinates: [
+        { destination: 'Mehrauli', lat: 28.5275, lng: 77.1866 },
+        { destination: 'Saket Metro Station', lat: 28.5224, lng: 77.2052 },
+        { destination: 'Hauz Khas', lat: 28.5494, lng: 77.2012 },
+        { destination: 'Nehru Place Terminal', lat: 28.5479, lng: 77.2537 }
+      ]
+    }
   ]);
 
   const [showRequests, setShowRequests] = useState(false);
@@ -61,22 +65,23 @@ const ManagerDashboard = () => {
 
   const [reportData, setReportData] = useState(null);
 
-  // Add route to list
   const handleAddRoute = (request) => {
     const newRoute = {
-      name: request.routeNumber,
-      path: request.busStops,
+      id: request.routeNumber,
+      coordinates: request.busStops.map(([lat, lng], index) => ({
+        destination: `Stop ${index + 1}`,
+        lat,
+        lng
+      })),
     };
     setRoutes([...routes, newRoute]);
     setRouteCreationRequests(routeCreationRequests.filter(req => req.id !== request.id));
   };
 
-  // Decline request handler
   const handleDeclineRequest = (request) => {
     setRouteCreationRequests(routeCreationRequests.filter(req => req.id !== request.id));
   };
 
-  // Handle reports viewing
   const handleViewReports = () => {
     setReportData({
       totalRoutes: routes.length,
@@ -88,19 +93,18 @@ const ManagerDashboard = () => {
     });
   };
 
-  // Handle logout function to redirect to login page
   const handleLogout = () => {
     // Clear session or authentication tokens (if applicable)
-    // Then redirect to the login page ("/")
-    navigate('/');
+    navigate('/'); // Redirect to login page
   };
 
   return (
     <div className="dashboard-container">
-      <h1>Manager Dashboard</h1>
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
+      {/* <Navbar /> Include Navbar for navigation consistency */}
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
+      <h1 className="header">Manager Dashboard</h1>
+
+      {/* Route Management */}
       <div className="stats-container">
         <div className="stat-item profit">
           <h3>Monthly Profit</h3>
@@ -127,11 +131,13 @@ const ManagerDashboard = () => {
             onDecline={handleDeclineRequest}
           />
         )}
-        <div className="routes-list">
-          <h3>Total Routes: {routes.length}</h3>
+        <h3>Total Routes: {routes.length}</h3>
+        <div className="map-container">
           <Map routes={routes} />
         </div>
       </div>
+
+      {/* View Reports */}
       <div className="view-reports">
         <h2>View Monthly Reports</h2>
         <button onClick={handleViewReports}>Generate Report</button>
