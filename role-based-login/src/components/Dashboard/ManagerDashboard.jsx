@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ManagerDashboard.css';
-import Map from '../Map/PlannerMap'; // Import the Map component
+import Map from '../Map/Map'; // Import the Map component
 import RouteCreationRequest from '../RouteCreationRequest/RouteCreationRequest'; // Import the RouteCreationRequest component
 
 const ManagerDashboard = () => {
