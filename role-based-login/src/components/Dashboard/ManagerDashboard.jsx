@@ -1,23 +1,90 @@
-// src/components/ManagerDashboard/ManagerDashboard.jsx
 import React, { useState } from 'react';
 import './ManagerDashboard.css';
 import Map from '../Map/Map'; // Import the Map component
+import RouteCreationRequest from '../RouteCreationRequest/RouteCreationRequest'; // Import the RouteCreationRequest component
 
 const ManagerDashboard = () => {
-  const [routeName, setRouteName] = useState('');
-  const [routes, setRoutes] = useState([]);
+  // Initial routes, assuming you have 10 routes by default
+  const [routes, setRoutes] = useState([
+    {
+      name: 'Route 1: City Center to Airport',
+      path: [
+        [28.6129, 77.2295],
+        [28.6145, 77.2152],
+        [28.6167, 77.2101],
+        [28.6190, 77.2000],
+      ],
+    },
+    {
+      name: 'Route 2: Downtown to Suburbs',
+      path: [
+        [28.6150, 77.2075],
+        [28.6200, 77.2200],
+        [28.6250, 77.2300],
+        [28.6300, 77.2400],
+      ],
+    },
+    {
+      name: 'Route 3: Metro Station to City Park',
+      path: [
+        [28.6450, 77.1900],
+        [28.6500, 77.2000],
+        [28.6550, 77.2100],
+        [28.6600, 77.2200],
+      ],
+    },
+    // Add more initial routes if needed
+  ]);
+
+  const [showRequests, setShowRequests] = useState(false);
+  const [routeCreationRequests, setRouteCreationRequests] = useState([
+    // Dummy data for route creation requests
+    {
+      id: 1,
+      routeNumber: 'Route 11',
+      busStops: [
+        [28.6050, 77.2150],
+        [28.6100, 77.2200],
+        [28.6150, 77.2250],
+      ],
+    },
+    {
+      id: 2,
+      routeNumber: 'Route 12',
+      busStops: [
+        [28.6200, 77.2100],
+        [28.6250, 77.2150],
+        [28.6300, 77.2200],
+      ],
+    },
+    // Add more dummy requests if needed
+  ]);
+
   const [reportData, setReportData] = useState(null);
 
-  const handleAddRoute = () => {
-    if (routeName) {
-      setRoutes([...routes, routeName]);
-      setRouteName('');
-    }
+  const handleAddRoute = (request) => {
+    // Add the route from the request to the existing routes
+    const newRoute = {
+      name: request.routeNumber,
+      path: request.busStops,
+    };
+
+    setRoutes([...routes, newRoute]);
+
+    // Remove the request from the list
+    setRouteCreationRequests(routeCreationRequests.filter(req => req.id !== request.id));
+  };
+
+  const handleDeclineRequest = (request) => {
+    // Remove the request from the list
+    setRouteCreationRequests(routeCreationRequests.filter(req => req.id !== request.id));
   };
 
   const handleViewReports = () => {
     // Dummy data for reports
     setReportData({
+      totalRoutes: routes.length,
+      totalRequests: routeCreationRequests.length,
       monthlySales: '$10,000',
       monthlyProfit: '$3,000',
       monthlyExpenses: '$7,000',
@@ -46,25 +113,21 @@ const ManagerDashboard = () => {
           <p>$7,000</p>
         </div>
       </div>
-      <div className="add-route">
-        <h2>Add New Route</h2>
-        <input
-          type="text"
-          value={routeName}
-          onChange={(e) => setRouteName(e.target.value)}
-          placeholder="Enter route name"
-        />
-        <button onClick={handleAddRoute}>Add Route</button>
+      <div className="route-management">
+        <h2>Route Management</h2>
+        <button onClick={() => setShowRequests(!showRequests)}>
+          {showRequests ? 'Hide Route Creation Requests' : 'Show Route Creation Requests'}
+        </button>
+        {showRequests && (
+          <RouteCreationRequest
+            requests={routeCreationRequests}
+            onApprove={handleAddRoute} // Pass the function to approve and add a route
+            onDecline={handleDeclineRequest} // Pass the function to decline a request
+          />
+        )}
         <div className="routes-list">
-          <ul>
-            {routes.map((route, index) => (
-              <li key={index}>{route}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="dummy-routes">
-          <h3>DTC City Bus Routes</h3>
-          <Map /> {/* Add the Map component here */}
+          <h3>Total Routes: {routes.length}</h3>
+          <Map routes={routes} /> {/* Pass routes to the Map component */}
         </div>
       </div>
       <div className="view-reports">
@@ -72,6 +135,8 @@ const ManagerDashboard = () => {
         <button onClick={handleViewReports}>Generate Report</button>
         {reportData && (
           <div className="report-data">
+            <p><strong>Total Routes:</strong> {reportData.totalRoutes}</p>
+            <p><strong>Total Route Creation Requests:</strong> {reportData.totalRequests}</p>
             <p><strong>Monthly Sales:</strong> {reportData.monthlySales}</p>
             <p><strong>Monthly Profit:</strong> {reportData.monthlyProfit}</p>
             <p><strong>Monthly Expenses:</strong> {reportData.monthlyExpenses}</p>

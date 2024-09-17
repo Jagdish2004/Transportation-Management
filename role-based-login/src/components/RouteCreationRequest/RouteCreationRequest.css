@@ -1,0 +1,18 @@
+.route-creation-requests {
+    margin: 20px 0;
+  }
+  
+  .route-creation-requests ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .route-creation-requests li {
+    margin-bottom: 20px;
+  }
+  
+  .route-creation-requests button {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
