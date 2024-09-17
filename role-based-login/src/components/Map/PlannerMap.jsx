@@ -1,4 +1,4 @@
-// src/components/Map/Map.jsx
+// src/components/Map/PlannerMap.jsx
 import React from 'react';
 import { MapContainer, TileLayer, Polyline, Popup, Marker } from 'react-leaflet';
 import L from 'leaflet'; // Import Leaflet
