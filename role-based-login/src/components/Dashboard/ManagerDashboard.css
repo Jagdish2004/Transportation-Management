@@ -31,10 +31,6 @@ h1 {
     background-color: #28a745; /* Green */
 }
 
-.stat-item.sales {
-    background-color: #007bff; /* Blue */
-}
-
 .stat-item.revenue {
     background-color: #ffc107; /* Yellow */
 }
@@ -90,3 +86,24 @@ button:hover {
 .report-data {
     margin-top: 10px;
 }
+
+/*logout button*/
+
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 8px 16px;
+    background-color: #f04e45;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #d43d35;
+  }
+  
