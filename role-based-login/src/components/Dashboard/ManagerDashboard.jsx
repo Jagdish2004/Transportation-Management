@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import './ManagerDashboard.css';
 import Map from '../Map/Map'; // Import the Map component
 import RouteCreationRequest from '../RouteCreationRequest/RouteCreationRequest'; // Import the RouteCreationRequest component
 
 const ManagerDashboard = () => {
-  // Initial routes, assuming you have 10 routes by default
+  const navigate = useNavigate(); // Initialize the navigate function for routing
+
   const [routes, setRoutes] = useState([
     {
       name: 'Route 1: City Center to Airport',
@@ -33,12 +35,10 @@ const ManagerDashboard = () => {
         [28.6600, 77.2200],
       ],
     },
-    // Add more initial routes if needed
   ]);
 
   const [showRequests, setShowRequests] = useState(false);
   const [routeCreationRequests, setRouteCreationRequests] = useState([
-    // Dummy data for route creation requests
     {
       id: 1,
       routeNumber: 'Route 11',
@@ -57,31 +57,27 @@ const ManagerDashboard = () => {
         [28.6300, 77.2200],
       ],
     },
-    // Add more dummy requests if needed
   ]);
 
   const [reportData, setReportData] = useState(null);
 
+  // Add route to list
   const handleAddRoute = (request) => {
-    // Add the route from the request to the existing routes
     const newRoute = {
       name: request.routeNumber,
       path: request.busStops,
     };
-
     setRoutes([...routes, newRoute]);
-
-    // Remove the request from the list
     setRouteCreationRequests(routeCreationRequests.filter(req => req.id !== request.id));
   };
 
+  // Decline request handler
   const handleDeclineRequest = (request) => {
-    // Remove the request from the list
     setRouteCreationRequests(routeCreationRequests.filter(req => req.id !== request.id));
   };
 
+  // Handle reports viewing
   const handleViewReports = () => {
-    // Dummy data for reports
     setReportData({
       totalRoutes: routes.length,
       totalRequests: routeCreationRequests.length,
@@ -92,9 +88,19 @@ const ManagerDashboard = () => {
     });
   };
 
+  // Handle logout function to redirect to login page
+  const handleLogout = () => {
+    // Clear session or authentication tokens (if applicable)
+    // Then redirect to the login page ("/")
+    navigate('/');
+  };
+
   return (
     <div className="dashboard-container">
       <h1>Manager Dashboard</h1>
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
       <div className="stats-container">
         <div className="stat-item profit">
           <h3>Profit</h3>
@@ -121,13 +127,13 @@ const ManagerDashboard = () => {
         {showRequests && (
           <RouteCreationRequest
             requests={routeCreationRequests}
-            onApprove={handleAddRoute} // Pass the function to approve and add a route
-            onDecline={handleDeclineRequest} // Pass the function to decline a request
+            onApprove={handleAddRoute}
+            onDecline={handleDeclineRequest}
           />
         )}
         <div className="routes-list">
           <h3>Total Routes: {routes.length}</h3>
-          <Map routes={routes} /> {/* Pass routes to the Map component */}
+          <Map routes={routes} />
         </div>
       </div>
       <div className="view-reports">
