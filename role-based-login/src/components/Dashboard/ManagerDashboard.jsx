@@ -103,19 +103,15 @@ const ManagerDashboard = () => {
       </button>
       <div className="stats-container">
         <div className="stat-item profit">
-          <h3>Profit</h3>
+          <h3>Monthly Profit</h3>
           <p>$3,000</p>
         </div>
-        <div className="stat-item sales">
-          <h3>Sales</h3>
-          <p>$10,000</p>
-        </div>
         <div className="stat-item revenue">
-          <h3>Revenue</h3>
+          <h3>Monthly Revenue</h3>
           <p>$15,000</p>
         </div>
         <div className="stat-item expenses">
-          <h3>Expenses</h3>
+          <h3>Monthly Expenses</h3>
           <p>$7,000</p>
         </div>
       </div>
