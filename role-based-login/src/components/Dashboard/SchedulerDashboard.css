@@ -1,0 +1,141 @@
+/* src/components/Dashboard/SchedulerDashboard.css */
+
+.scheduler-dashboard {
+    position: relative; /* Ensure positioning of logout button */
+    padding: 20px;
+}
+
+.scheduler-dashboard h1,
+.scheduler-dashboard h2 {
+    color: #333;
+}
+
+.create-schedule-button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.scheduler-dashboard button:hover {
+    background-color: #0056b3;
+}
+
+.scheduler-dashboard .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.scheduler-dashboard .schedule-table th,
+.scheduler-dashboard .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.scheduler-dashboard .schedule-table th {
+    background-color: #f2f2f2;
+}
+
+.scheduler-dashboard form {
+    margin-top: 20px;
+}
+
+.scheduler-dashboard input {
+    padding: 5px;
+    margin-left: 10px;
+    width: calc(100% - 140px); /* Adjust to fit within container */
+}
+
+/* Styling for the logout button */
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 8px 16px;
+    background-color: #f04e45;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #d43d35;
+}
+
+/* Popup styling */
+.scheduler-dashboard .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+}
+
+.scheduler-dashboard .popup.active {
+    display: block;
+}
+
+.scheduler-dashboard .popup button {
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+}
+
+.scheduler-dashboard .popup button:hover {
+    background-color: #218838;
+}
+
+/* Styling for the absent input section */
+.absent-input-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start;
+}
+
+.absent-input-container input {
+    width: 100%; /* Full width of the container */
+    margin-bottom: 10px; /* Space between input and button */
+}
+
+.absent-input-container button {
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.absent-input-container button:hover {
+    background-color: #e0a800;
+}
+
+/* Styling for buttons in popup */
+.popup-buttons-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px; /* Add gap between buttons */
+}
+
+.popup-buttons-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-buttons-container button:hover {
+    background-color: #0056b3;
+}
