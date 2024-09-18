@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Assuming your CSS file is already created and styled as discussed earlier
+import './Login.css'; // Assuming your CSS file is already created and styled
 
 const Login = () => {
   const [user, setUser] = useState({ username: '', password: '', role: '' });
@@ -37,6 +37,9 @@ const Login = () => {
 
   return (
     <div className="container"> {/* Flexbox container for centering */}
+      <div className="title-container">
+        <h1 className="title">Transportation Management DTC</h1>
+      </div>
       <div className="login-container">
         <h2>Login</h2>
         <input
