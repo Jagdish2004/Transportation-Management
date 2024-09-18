@@ -1,0 +1,31 @@
+.redesign-schedule-container {
+    padding: 20px;
+  }
+  
+  .ml-redesign-button, .edit-button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .ml-redesign-button:hover, .edit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .schedule-table th {
+    background-color: #f2f2f2;
+  }
+  

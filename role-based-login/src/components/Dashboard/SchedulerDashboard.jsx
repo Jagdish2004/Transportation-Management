@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SchedulerDashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 const SchedulerDashboard = () => {
   const [schedule, setSchedule] = useState([]);
@@ -10,6 +11,11 @@ const SchedulerDashboard = () => {
   const [routeInput, setRouteInput] = useState('');
   const [absentCrewIds, setAbsentCrewIds] = useState([]);
   const [absentInput, setAbsentInput] = useState('');
+  const [totalAvailableCrew, setTotalAvailableCrew] = useState(20); // Initial count of crew members
+  const [alertMessage, setAlertMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [crewAlerts, setCrewAlerts] = useState([]);
+  const navigate = useNavigate();
 
   const routes = [100, 101, 102]; // Define routes
 
@@ -34,29 +40,70 @@ const SchedulerDashboard = () => {
   // Create dummy schedule with varying times
   const handleCreateSchedule = () => {
     const existingTimes = new Set();
-
-    const dummySchedule = Array.from({ length: 30 }, (_, index) => {
+    const crewCount = 10; // Number of unique crew members
+    const linkedCrewCount = 7; // Number of crew members with linked duties
+    const unlinkedCrewCount = crewCount - linkedCrewCount; // Number of crew members with unlinked duties
+  
+    const shifts = ['Morning', 'Afternoon', 'Night']; // Different shifts available
+    const dummySchedule = [];
+  
+    // Generate linked duty schedule
+    for (let crewIndex = 0; crewIndex < linkedCrewCount; crewIndex++) {
+      const crewId = `C${String(crewIndex + 1).padStart(3, '0')}`;
+      const busNo = `B${String(101 + crewIndex)}`;
+      const routeNo = (100 + (crewIndex % 3)).toString(); // 3 routes
+      const shift = shifts[crewIndex % shifts.length]; // Rotate shifts for linked duty
+  
+      for (let trip = 0; trip < 3; trip++) {
+        const { startTime, endTime } = generateUniqueTimes([...existingTimes]);
+        existingTimes.add(startTime);
+        existingTimes.add(endTime);
+  
+        dummySchedule.push({
+          crew_id: crewId,
+          route_no: routeNo,
+          shift: shift,
+          bus_no: busNo,
+          start_time: startTime,
+          end_time: endTime,
+          remarks: 'Drive Safe'
+        });
+      }
+    }
+  
+    // Generate unlinked duty schedule
+    for (let crewIndex = linkedCrewCount; crewIndex < crewCount; crewIndex++) {
+      const crewId = `C${String(crewIndex + 1).padStart(3, '0')}`;
+      const busNo = `B${String(201 + crewIndex)}`;
+      const routeNo = (100 + (crewIndex % 3)).toString(); // 3 routes
+      const shift = shifts[(crewIndex + linkedCrewCount) % shifts.length]; // Assign different shifts
       const { startTime, endTime } = generateUniqueTimes([...existingTimes]);
       existingTimes.add(startTime);
       existingTimes.add(endTime);
-
-      return {
-        crew_id: `C${String(index + 1).padStart(3, '0')}`,
-        route_no: (100 + (index % 3)).toString(), // 3 routes
-        shift: ['Morning', 'Afternoon', 'Night'][index % 3],
-        bus_no: `B${String(101 + index)}`,
+  
+      dummySchedule.push({
+        crew_id: crewId,
+        route_no: routeNo,
+        shift: shift,
+        bus_no: busNo,
         start_time: startTime,
         end_time: endTime,
         remarks: 'Drive Safe'
-      };
-    });
-
+      });
+    }
+  
     setSchedule(dummySchedule);
+    setTotalAvailableCrew(totalAvailableCrew - crewCount); // Decrease available crew count
     setShowPopup(true);
   };
 
   const handleUpdateDatabase = () => {
     alert('Database updated successfully with absent crew members!');
+    setTotalAvailableCrew(totalAvailableCrew - absentCrewIds.length); // Adjust as necessary
+  };
+
+  const handleRedesignSchedule = () => {
+    navigate('/redesign-ml');
   };
 
   const handleAbsentInputChange = (e) => {
@@ -96,10 +143,30 @@ const SchedulerDashboard = () => {
     setShowRouteSchedule(true);
   };
 
+  // Function to handle crew alerts
+  const handleCrewAlert = () => {
+    // Simulate receiving dummy alerts related to overcrowding and delays
+    const dummyAlerts = [
+      `Alert: Overcrowding reported on Route 100.`,
+
+      `Alert: Delay on Route 101.`,
+    ];
+    // Filter only overcrowding and delay alerts
+    const filteredAlerts = dummyAlerts.filter(alert => alert.includes('Overcrowding') || alert.includes('Delay'));
+    setCrewAlerts(filteredAlerts);
+  };
+
+  // Use effect to simulate alerts on component mount
+  useEffect(() => {
+    handleCrewAlert();
+  }, []);
+
   return (
     <div className="scheduler-dashboard">
       <button className="logout-button" onClick={handleLogout}>Logout</button>
       <h1>Scheduler Dashboard</h1>
+
+      <p>Total Available Crew: {totalAvailableCrew}</p>
 
       <div className="absent-input-container">
         <input
@@ -110,12 +177,17 @@ const SchedulerDashboard = () => {
         />
         <button className="update-button" onClick={handleAddAbsentCrew}>Update Database</button>
       </div>
+
       <div>
-      <button className="create-schedule-button" onClick={handleCreateSchedule}>Update Schedule</button>
+        <button className="ml-redesign-button" onClick={handleRedesignSchedule}>
+          Redesign Schedule using ML
+        </button>
       </div>
+      
       <div>
-      <button className="create-schedule-button" onClick={handleCreateSchedule}>Create Schedule using ml</button>
+        <button className="create-schedule-button" onClick={handleCreateSchedule}>Assign Daily Duty</button>
       </div>
+     
       
       {/* Popup to show created schedule */}
       {showPopup && (
@@ -165,12 +237,13 @@ const SchedulerDashboard = () => {
           type="text"
           value={routeInput}
           onChange={handleRouteInputChange}
-          placeholder="Enter Route ID"
+          placeholder="Enter Route ID to view schedule"
         />
-        <button className="update-button" onClick={handleShowRouteSchedule}>Show Route-wise Schedule</button>
+        <button className="view-schedule-button" onClick={handleShowRouteSchedule}>
+          Show Route Schedule
+        </button>
       </div>
 
-      {/* Route-wise Schedule Popup */}
       {showRouteSchedule && (
         <div className="popup active">
           <h2>Route Schedule for Route ID: {routeInput}</h2>
@@ -203,6 +276,20 @@ const SchedulerDashboard = () => {
           </div>
         </div>
       )}
+
+      {/* Crew Alerts Section */}
+      <div className="alerts-container">
+        <h2>Crew Alerts</h2>
+        {crewAlerts.length === 0 ? (
+          <p>No alerts received.</p>
+        ) : (
+          <ul>
+            {crewAlerts.map((alert, index) => (
+              <li key={index}>{alert}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

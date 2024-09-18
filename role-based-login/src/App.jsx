@@ -10,6 +10,7 @@ import ManagerDashboard from './components/Dashboard/ManagerDashboard';
 import PlannerDashboard from './components/Dashboard/PlannerDashboard';
 import SchedulerDashboard from './components/Dashboard/SchedulerDashboard';
 import CrewDashboard from './components/Dashboard/CrewDashboard';
+import RedesignScheduleML from './components/Dashboard/RedesignScheduleML';
 
 const App = () => {
   return (
@@ -20,6 +21,8 @@ const App = () => {
         <Route path="/planner-dashboard" element={<PlannerDashboard />} />
         <Route path="/scheduler-dashboard" element={<SchedulerDashboard />} />
         <Route path="/crew-dashboard" element={<CrewDashboard />} />
+        <Route path="/redesign-ml" element={<RedesignScheduleML />} />
+
       </Routes>
     </Router>
   );

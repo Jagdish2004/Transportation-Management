@@ -1,6 +1,7 @@
 .scheduler-dashboard {
     text-align: center;
     padding: 20px;
+    position: relative;
 }
 
 .logout-button {
@@ -15,19 +16,33 @@
     cursor: pointer;
 }
 
-.create-schedule-button, .absent-input-container button, .route-input-container button {
+.create-schedule-button, .absent-input-container button, .route-input-container button, .ml-redesign-button {
     padding: 10px 20px;
-    margin: 10px 0;
+    margin: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    padding-left: 30px;
+}
+.ml-redesign-button{
+    
+    background-color:  #3aa53e !important;
+}
+.absent-input-container button{
+    background-color: #2196F3;
+}
+
+
+.ml-redesign-button {
+    background-color: #2196F3; /* Different color for ML redesign button */
 }
 
 .absent-input-container, .route-input-container {
     margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .absent-input-container input, .route-input-container input {
@@ -37,48 +52,30 @@
     border-radius: 4px;
 }
 
-.absent-input-container button, .route-input-container button {
-    margin-top: 10px; 
-    margin-left: 10px;
-}
-/* 
-.popup {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-} */
- /* Wrapper for the popup to center it */
 .popup-wrapper {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Optional: Semi-transparent background */
-    z-index: 1000; /* Ensure the popup is above other content */
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
 }
 
-/* Popup styling */
 .popup {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 20px;
     max-width: 800px;
-    max-height: 80vh; /* Set a max-height for the popup */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative; /* Relative positioning inside the wrapper */
+    position: relative;
 }
-
 
 .popup-buttons-container {
     display: flex;
@@ -94,16 +91,16 @@
 }
 
 .schedule-table th {
-    background-color: #f0f0f0; /* Optional: Add a subtle background to distinguish headers */
-    font-weight: bold; /* Make table header bold */
-    color: black !important; /* Force the header text to be black */
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: black !important;
 }
 
 .schedule-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
-    color: black; /* Set the text color for table data */
+    color: black;
 }
 
 .route-schedule-container {
@@ -112,15 +109,16 @@
 
 h1 {
     margin-bottom: 20px;
-    color: black; /* Change the color of h1 text to black */
+    color: black;
 }
 
 .popup p {
     margin-bottom: 10px;
     font-size: 16px;
     font-weight: bold;
-    color: black; /* Change the color of paragraph text inside popup to black */
+    color: black;
 }
+
 .route-id-headline {
-    color: black; /* Change the color of the headline text to black */
+    color: black;
 }
