@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './ManagerDashboard.css';
 import Map from '../Map/PlannerMap'; // Import the PlannerMap component for visualization
 import RouteCreationRequest from '../RouteCreationRequest/RouteCreationRequest';
-//import Navbar from '../../Navbar/Navbar'; // Import Navbar for consistent layout
+
 
 const ManagerDashboard = () => {
   const navigate = useNavigate();
