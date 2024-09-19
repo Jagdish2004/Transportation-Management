@@ -45,20 +45,20 @@ const ManagerDashboard = () => {
   const [routeCreationRequests, setRouteCreationRequests] = useState([
     {
       id: 1,
-      routeNumber: 'Route 11',
+      routeNumber: 'Route 150',
       busStops: [
-        [28.6050, 77.2150],
-        [28.6100, 77.2200],
-        [28.6150, 77.2250],
+        [28.6417, 77.1568],
+        [28.6372, 77.2045],
+        [28.6372, 77.1827],
       ],
     },
     {
       id: 2,
-      routeNumber: 'Route 12',
+      routeNumber: 'Route 151',
       busStops: [
-        [28.6200, 77.2100],
-        [28.6250, 77.2150],
-        [28.6300, 77.2200],
+        [28.6519, 77.1906],
+        [28.6315, 77.2167],
+        [28.6129, 77.2295],
       ],
     },
   ]);
