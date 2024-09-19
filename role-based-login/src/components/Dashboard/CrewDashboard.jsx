@@ -76,15 +76,21 @@ const CrewDashboard = () => {
 
   return (
     <div className="crew-dashboard">
-      <button className="logout-button" onClick={handleLogout}>Logout</button>
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
       <h1>Crew Dashboard</h1>
 
       <div className="profile-section">
         <h3>Crew ID: {crewId}</h3>
         <h3>Status: {status}</h3>
         <div className="status-buttons">
-          <button onClick={handlePresentStatus} className="status-button">Mark as Available</button>
-          <button onClick={handleAbsentStatus} className="status-button">Mark as Absent</button>
+          <button onClick={handlePresentStatus} className="status-button">
+            Mark as Available
+          </button>
+          <button onClick={handleAbsentStatus} className="status-button">
+            Mark as Absent
+          </button>
         </div>
       </div>
 
@@ -134,16 +140,24 @@ const CrewDashboard = () => {
       {/* Map */}
       <div className="map-section">
         <h2>Route Map</h2>
-        <MapContainer center={routeCoordinates[0]} zoom={13} style={{ height: '400px', width: '100%' }}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; OpenStreetMap contributors"
-          />
-          {routeCoordinates.map((coord, index) => (
-            <Marker key={index} position={coord}></Marker>
-          ))}
-          <Polyline positions={routeCoordinates} color="blue" />
-        </MapContainer>
+        {routeCoordinates.length > 0 ? (
+          <MapContainer
+            center={routeCoordinates[0] || [28.5355, 77.2698]} // Fallback coordinates for Delhi
+            zoom={13}
+            style={{ height: "400px", width: "100%" }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; OpenStreetMap contributors"
+            />
+            {routeCoordinates.map((coord, index) => (
+              <Marker key={index} position={coord}></Marker>
+            ))}
+            <Polyline positions={routeCoordinates} color="blue" />
+          </MapContainer>
+        ) : (
+          <p>Loading map...</p>
+        )}
       </div>
 
       {/* Feedback Section */}
@@ -159,8 +173,14 @@ const CrewDashboard = () => {
 
       {/* GPS Location Update */}
       <div className="location-section">
-        <button onClick={handleLocationSend} className="location-button">Send Current Location</button>
-        {location && <p>Your current location is: {location[0]}, {location[1]}</p>}
+        <button onClick={handleLocationSend} className="location-button">
+          Send Current Location
+        </button>
+        {location && (
+          <p>
+            Your current location is: {location[0]}, {location[1]}
+          </p>
+        )}
       </div>
     </div>
   );
