@@ -11,10 +11,13 @@ const SchedulerDashboard = () => {
   const [routeInput, setRouteInput] = useState('');
   const [absentCrewIds, setAbsentCrewIds] = useState([]);
   const [absentInput, setAbsentInput] = useState('');
-  const [totalAvailableCrew, setTotalAvailableCrew] = useState(20); // Initial count of crew members
+  const [totalAvailableCrew, setTotalAvailableCrew] = useState(20);
   const [alertMessage, setAlertMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [crewAlerts, setCrewAlerts] = useState([]);
+  const [overcrowdingReports, setOvercrowdingReports] = useState([]); // Added state for overcrowding reports
+  const [showOvercrowdingPopup, setShowOvercrowdingPopup] = useState(false); // Added state for showing the overcrowding popup
+
   const navigate = useNavigate();
 
   const routes = [100, 101, 102]; // Define routes
@@ -143,15 +146,23 @@ const SchedulerDashboard = () => {
     setShowRouteSchedule(true);
   };
 
+   // Dummy function to simulate overcrowding reports
+   const fetchOvercrowdingReports = () => {
+    const dummyReports = [
+      { route_no: 100, bus_no: 'B101', time: '10:30 AM', level: 'High', stop: 'Stop 1' },
+      { route_no: 101, bus_no: 'B102', time: '11:45 AM', level: 'Moderate', stop: 'Stop 3' },
+      { route_no: 102, bus_no: 'B103', time: '12:15 PM', level: 'Critical', stop: 'Stop 5' },
+    ];
+    setOvercrowdingReports(dummyReports);
+    setShowOvercrowdingPopup(true);
+  };
+
   // Function to handle crew alerts
   const handleCrewAlert = () => {
-    // Simulate receiving dummy alerts related to overcrowding and delays
     const dummyAlerts = [
       `Alert: Overcrowding reported on Route 100.`,
-
       `Alert: Delay on Route 101.`,
     ];
-    // Filter only overcrowding and delay alerts
     const filteredAlerts = dummyAlerts.filter(alert => alert.includes('Overcrowding') || alert.includes('Delay'));
     setCrewAlerts(filteredAlerts);
   };
@@ -167,6 +178,38 @@ const SchedulerDashboard = () => {
       <h1>Scheduler Dashboard</h1>
 
       <p>Total Available Crew: {totalAvailableCrew}</p>
+
+      {/* Overcrowding Reports Section */}
+      <button className="overcrowding-button" onClick={fetchOvercrowdingReports}>Show Overcrowding Alert</button>
+
+      {showOvercrowdingPopup && (
+        <div className="popup active">
+          <h2>Overcrowding Reports</h2>
+          <table className="schedule-table">
+            <thead>
+              <tr>
+                <th>Route No.</th>
+                <th>Bus No.</th>
+                <th>Time</th>
+                <th>Overcrowding Level</th>
+                <th>Bus Stop</th>
+              </tr>
+            </thead>
+            <tbody>
+              {overcrowdingReports.map((report, index) => (
+                <tr key={index}>
+                  <td>{report.route_no}</td>
+                  <td>{report.bus_no}</td>
+                  <td>{report.time}</td>
+                  <td>{report.level}</td>
+                  <td>{report.stop}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button onClick={() => setShowOvercrowdingPopup(false)}>Close</button>
+        </div>
+      )}
 
       <div className="absent-input-container">
         <input
@@ -276,20 +319,6 @@ const SchedulerDashboard = () => {
           </div>
         </div>
       )}
-
-      {/* Crew Alerts Section */}
-      <div className="alerts-container">
-        <h2>Crew Alerts</h2>
-        {crewAlerts.length === 0 ? (
-          <p>No alerts received.</p>
-        ) : (
-          <ul>
-            {crewAlerts.map((alert, index) => (
-              <li key={index}>{alert}</li>
-            ))}
-          </ul>
-        )}
-      </div>
     </div>
   );
 };

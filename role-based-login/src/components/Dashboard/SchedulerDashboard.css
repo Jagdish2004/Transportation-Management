@@ -4,7 +4,12 @@
     position: relative;
 }
 
-.logout-button {
+.overcrowding-button{
+    color:white;
+    background-color: #f44336;
+}
+
+.logout-button{
     position: absolute;
     top: 10px;
     right: 10px;
