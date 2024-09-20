@@ -27,29 +27,64 @@ const PlannerDashboard = () => {
       {
         id: 'route1',
         coordinates: [
-          { destination: 'Govind Puri Metro Station', lat: 28.5355, lng: 77.2698 },
-          { destination: 'AIIMS', lat: 28.5665, lng: 77.2100 },
-          { destination: 'Karol Bagh', lat: 28.6538, lng: 77.1913 },
-          { destination: 'Shahbad Dairy', lat: 28.7301, lng: 77.1121 }
+          { destination: 'Wazirpur Depot', lat: 28.7011, lng: 77.1586 },
+          { destination: 'Netaji Subhash Place', lat: 28.7055, lng: 77.1590 },
+          { destination: 'Pitampura TV Tower', lat: 28.7063, lng: 77.1486 },
+          { destination: 'Madhuban Chowk', lat: 28.7079, lng: 77.1399 },
+          { destination: 'Kashmere Gate ISBT', lat: 28.6559, lng: 77.2316 },
+          { destination: 'Wonders of World', lat: 28.565738, lng:77.320491 }
         ]
       },
       {
         id: 'route2',
         coordinates: [
-          { destination: 'Anand Vihar ISBT', lat: 28.6457, lng: 77.3152 },
-          { destination: 'Karkardooma Court', lat: 28.6467, lng: 77.2931 },
-          { destination: 'Indraprastha Metro Station', lat: 28.6285, lng: 77.2459 },
-          { destination: 'Red Fort', lat: 28.6562, lng: 77.2410 },
-          { destination: 'Mori Gate Terminal', lat: 28.6685, lng: 77.2234 }
+          { destination: 'Wazirpur Depot', lat: 28.7011, lng: 77.1586 },
+          { destination: 'Madhuban Chowk', lat: 28.7079, lng: 77.1399 },
+          { destination: 'Shakurpur', lat: 28.7111, lng: 77.1444 },
+          { destination: 'Keshav Puram', lat: 28.7267, lng: 77.1754 },
+          { destination: 'Keshav Puram', lat:28.6621, lng: 77.2441},
+          { destination: 'Bhajanpura', lat: 28.6683, lng: 77.2915 },
+          { destination: 'Anand Vihar ISBT', lat: 28.6500, lng: 77.3090 },
+        
+          // Additional point
         ]
       },
       {
         id: 'route3',
         coordinates: [
-          { destination: 'Mehrauli', lat: 28.5275, lng: 77.1866 },
-          { destination: 'Saket Metro Station', lat: 28.5224, lng: 77.2052 },
-          { destination: 'Hauz Khas', lat: 28.5494, lng: 77.2012 },
-          { destination: 'Nehru Place Terminal', lat: 28.5479, lng: 77.2537 }
+          { destination: 'Wazirpur Depot', lat: 28.7011, lng: 77.1586 },
+          { destination: 'Madhuban Chowk', lat: 28.7079, lng: 77.1399 },
+          { destination: 'Moti Bagh', lat: 28.5877, lng: 77.1853 },
+          { destination: 'Saket District Centre', lat: 28.5525, lng: 77.2270 },
+          { destination: 'Qutub Minar', lat: 28.5275, lng: 77.1850 } // Additional point
+        ]
+      },
+      {
+        id: 'route4',
+        coordinates: [
+          { destination: 'Wazirpur Depot', lat: 28.7011, lng: 77.1586 },
+          { destination: 'Shalimar Bagh', lat: 28.6961, lng: 77.1873 },
+          { destination: 'Azadpur Mandi', lat: 28.6580, lng: 77.1983 },
+        
+          { destination: 'Connaught Place', lat: 28.6280, lng: 77.2197 }
+        ]
+      },
+      {
+        id: 'route5',
+        coordinates: [
+          { destination: 'Wazirpur Depot', lat: 28.7011, lng: 77.1586 },
+          { destination: 'raja garden', lat: 28.651018, lng:77.126126},
+         
+          { destination: 'Dhaula Kuan', lat: 28.594512, lng: 77.166319},
+          
+          { destination: 'mahipalpur flyover', lat:28.543034, lng: 77.117613 },
+          { destination: 'Gurgaon Civil Lines', lat: 28.4850, lng: 77.0772 },
+          
+          { destination: 'Gurgaon Sector 17', lat: 28.4675, lng: 77.0731 },
+          { destination: 'Kapashera Border', lat: 28.4874, lng: 77.1185 },
+          
+          
+       
         ]
       }
     ];
