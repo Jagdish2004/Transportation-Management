@@ -15,7 +15,7 @@ const RedesignScheduleML = ({ onRedesign }) => {
 
   // Simulate ML model and heuristics generating a new schedule
   const handleRedesignSchedule = () => {
-    alert('Static schedule redesigned using ML and Heuristics!');
+    alert('Schedule redesigned using ML and Heuristics!');
 
     // Generate new schedule with extra buses for overcrowded routes
     const generatedSchedule = overcrowdedBuses.flatMap(bus => {
@@ -52,7 +52,7 @@ const RedesignScheduleML = ({ onRedesign }) => {
 
   return (
     <div className="redesign-schedule-container">
-      <h1>Redesign Static Schedule using ML</h1>
+      <h1>Redesign Schedule using ML</h1>
 
       {/* Overcrowded Buses Section */}
       <div className="overcrowded-section">
