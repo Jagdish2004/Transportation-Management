@@ -1,0 +1,83 @@
+/* src/components/Dashboard/CrewDashboard.css */
+
+.crew-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .profile-section {
+    margin-bottom: 20px;
+  }
+  
+  .status-buttons {
+    margin-top: 10px;
+  }
+  
+  .status-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .status-button:hover {
+    background-color: #45a049;
+  }
+  
+  .notifications-container {
+    margin: 20px 0;
+  }
+  
+  .schedule-container {
+    margin: 20px 0;
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .schedule-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .feedback-section textarea {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+  }
+  
+  .location-button {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .logout-button {
+    float: right;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #e53935;
+  }
+  
