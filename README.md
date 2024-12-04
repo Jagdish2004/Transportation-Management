@@ -1,2 +1,2 @@
 This project is not completed.
-it has only fronted part and some basic backend Integration.
+it has only frontend part and some basic backend Integration.
